@@ -1,0 +1,43 @@
+<div class="container">
+    <form class="form-group" (click)=gameStart()>
+
+        <p class="form-control">Enter a Username</p>
+        <input type="text" name="game.ninja" [(ngModel)]="game.ninja">
+        <input type="button" value="Start Game">
+    </form>
+    <br><br>
+    <div *ngIf="logged_in">
+        <p>Your Gold: <span class="border">{{ game.total_gold }} gold pieces</span></p>
+        <div id="all_acts">
+            <div class="activities border">
+                <h3>Farm</h3>
+                <p>(earns 2-5 gold pieces)</p>
+                <button (click)="getGold('farm')">Find Gold</button>
+            </div>
+            <div class="activities border">
+                <h3>Cave</h3>
+                <p>(earns 5-10 gold pieces)</p>
+                <button (click)="getGold('cave')">Find Gold</button>
+            </div>
+            <div class="activities border">
+                <h3>House</h3>
+                <p>(earns 7-15 gold pieces)</p>
+                <button (click)="getGold('house')">Find Gold</button>
+            </div>
+            <div class="activities border">
+                <h3>Casino</h3>
+                <p>(earns/takes 0-100 gold pieces)</p>
+                <button (click)="getGold('casino')">Find Gold</button>
+            </div>
+        </div>
+        <p>Activities</p>
+        <div id="act_display" class="border">
+            <ul *ngFor="let activity of game.log">
+            <li>{{activity}}</li>
+            </ul>
+        </div>
+        <button (click)="clear()">Clear</button><br>
+        <button (click)="save()">Save</button>
+    </div>  
+    {{ game | json}}
+</div>
